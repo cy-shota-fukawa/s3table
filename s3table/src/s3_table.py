@@ -67,6 +67,7 @@ class S3Table:
         :return: ダウンロードしたファイルのリスト
         """
         cp_files = []
+        self.load_files = self.check(self.load_files)
         for path in self.load_files:
             # ファイルダウンロード
             os.system("aws s3 cp %s ./" % path)
@@ -75,6 +76,15 @@ class S3Table:
             cp_files.append(path.split("/")[-1])
 
         return cp_files
+
+    def check(self, load_files):
+        res = []
+        for load_file in load_files:
+            if load_files.endswith("/*"):
+                res.append(load_file)
+            else:
+                res.append(load_file)
+        return res
 
     def load_data(self, cp_files):
         """
