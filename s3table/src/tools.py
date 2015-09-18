@@ -20,7 +20,7 @@ def get_argv():
     parser.add_option("--end_date", dest="end_date", default=None)
     parser.add_option("--create", action="store_true", dest="create_flg", default=False)
     parser.add_option("--drop", action="store_true", dest="drop_flg", default=False)
-    parser.add_option("-s", dest="setting_files", default=None)
+    parser.add_option("-s", "--setting_files", dest="setting_files", default=None)
 
     (options, args) = parser.parse_args()
 
