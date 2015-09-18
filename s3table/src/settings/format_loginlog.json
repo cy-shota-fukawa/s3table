@@ -2,9 +2,9 @@
     "table_name":"format_loginlog",
     "columns":"[カラム名, 型, indexの有無]",
     "columns":[
-        ["platform", "text", false],
+        ["platform", "varchar(16)", false],
         ["user_profile_id", "int", true],
-        ["opensocial_user_id", "text", true],
+        ["opensocial_user_id", "varchar(255)", true],
         ["use_tickets", "int", false],
         ["avatar_chara_mst_id", "int", false],
         ["chara_mst_id", "int", false],

@@ -2,7 +2,7 @@
     "table_name":"format_payment_log",
     "columns":"[カラム名, 型, indexの有無]",
     "columns":[
-        ["platform", "text", false],
+        ["platform", "varchar(16)", false],
         ["user_profile_id", "int", true],
         ["price", "int", false],
         ["created_at", "int", true]
