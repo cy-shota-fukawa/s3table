@@ -9,9 +9,9 @@
     ],
     "load_files":"ワイルドカードもそのうち対応",
     "load_files":[
-        "s3://cynapse-data/LVG/bks/all/format_payment_log/210509/bks_ameba_format_payment_log_20150901.tsv",
-        "s3://cynapse-data/LVG/bks/all/format_payment_log/210509/bks_ameba_format_payment_log_20150902.tsv",
-        "s3://cynapse-data/LVG/bks/all/format_payment_log/210509/bks_ameba_format_payment_log_20150903.tsv"
+        "s3://cynapse-data/LVG/bks/all/format_payment_log/201509/bks_ameba_format_payment_log_20150901.tsv",
+        "s3://cynapse-data/LVG/bks/all/format_payment_log/201509/bks_ameba_format_payment_log_20150902.tsv",
+        "s3://cynapse-data/LVG/bks/all/format_payment_log/201509/bks_ameba_format_payment_log_20150903.tsv"
     ],
     "db_settings":"ファイル分けをした方がいいけど、DROP時にdbnameが必要になるから一応まとめた",
     "db_settings":{
