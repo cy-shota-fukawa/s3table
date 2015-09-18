@@ -20,13 +20,28 @@ class S3Table:
         # テーブルの削除(DROP文)
         pass
 
-    def setup(self):
+    def connect_db(self):
         """
-        設定
+        DB接続
         """
         # DB接続
-        self.db = DB(**self.db_settings)
-        self.db.connect()
+        if self.db is None:
+            self.db = DB(**self.db_settings)
+            self.db.connect()
+
+    def disconnect_db(self):
+        """
+        # 接続を切る
+        """
+        self.db.disconnect()
+
+    def setup(self):
+        """
+        テーブルの作成、データの用意まで
+        :return:
+        """
+        # DBへ接続
+        self.connect_db()
 
         # テーブルの作成
         self.create_table()
@@ -40,8 +55,8 @@ class S3Table:
         # データをDBに入れる
         self.load_data(cp_files)
 
-        # 接続を切る
-        self.db.disconnect()
+        # DBへの接続を切る
+        self.disconnect_db()
 
     def get_s3_files(self):
         """
@@ -96,5 +111,11 @@ class S3Table:
         テーブル削除用のクエリ作成
         :return:
         """
+        # DBへ接続をする
+        self.connect_db()
+
         sql = "DROP TABLE %s.%s;" % (self.db_settings["dbname"], self.table_name)
         self.db.query(sql)
+
+        # DBへの接続を切る
+        self.disconnect_db()

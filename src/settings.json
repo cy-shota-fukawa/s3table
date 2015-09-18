@@ -20,5 +20,9 @@
         "user":"cynapse",
         "passwd":"dsg12345"
     },
-    "separator":"\t"
+    "separator":"\t",
+    "init_sqls":"テーブル作成時にやること？"
+    "init_sqls":[
+        "SET SESSION time_zone = 'Asia/Tokyo';"
+    ]
 }
