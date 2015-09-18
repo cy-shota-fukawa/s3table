@@ -1,0 +1,42 @@
+{
+    "table_name":"format_loginlog",
+    "columns":"[カラム名, 型, indexの有無]",
+    "columns":[
+        ["platform", "text", false],
+        ["user_profile_id", "int", true],
+        ["opensocial_user_id", "text", true],
+        ["use_tickets", "int", false],
+        ["avatar_chara_mst_id", "int", false],
+        ["chara_mst_id", "int", false],
+        ["ticket_mst_id", "int", false],
+        ["point", "int", false],
+        ["gold", "int", false],
+        ["avatar_p", "int", false],
+        ["total_minigame_p", "int", false],
+        ["gacha_p", "int", false],
+        ["clothes_max", "int", false],
+        ["warehouse_max", "int", false],
+        ["now_panel", "int", false],
+        ["user_created_at", "int", false],
+        ["user_updated_at", "int", false],
+        ["created_at", "int", true]
+    ],
+    "load_files":"ワイルドカードもそのうち対応",
+    "load_files":[
+        "s3://cynapse-data/LVG/bks/all/format_loginlog/201509/bks_ameba_format_loginlog_20150901.tsv",
+        "s3://cynapse-data/LVG/bks/all/format_loginlog/201509/bks_ameba_format_loginlog_20150902.tsv",
+        "s3://cynapse-data/LVG/bks/all/format_loginlog/201509/bks_ameba_format_loginlog_20150903.tsv"
+    ],
+    "db_settings":"ファイル分けをした方がいいけど、DROP時にdbnameが必要になるから一応まとめた",
+    "db_settings":{
+        "host":"cynapse.cgnsrwls2rrb.ap-northeast-1.rds.amazonaws.com",
+        "dbname":"s3tables",
+        "user":"cynapse",
+        "passwd":"dsg12345"
+    },
+    "separator":"\t",
+    "init_sqls":"テーブル作成時にやること？",
+    "init_sqls":[
+        "SET SESSION time_zone = 'Asia/Tokyo';"
+    ]
+}

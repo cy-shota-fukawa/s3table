@@ -2,8 +2,10 @@
 # -*- coding: utf-8 -*-
 import sys
 import json
-import tools
+
+from s3table.src import tools
 from s3_table import S3Table
+
 
 def main():
     # 引数取得
