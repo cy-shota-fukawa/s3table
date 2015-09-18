@@ -4,12 +4,13 @@ import os
 from db import DB
 
 class S3Table:
-    def __init__(self, table_name, columns, load_files, db_settings, separator):
+    def __init__(self, table_name, columns, load_files, db_settings, separator, init_sqls):
         self.table_name = table_name
         self.columns = columns
         self.load_files = load_files
         self.db_settings = db_settings
         self.separator = separator
+        self.init_sqls = init_sqls
         self.db = None
 
     def __del__(self):
@@ -28,6 +29,8 @@ class S3Table:
         if self.db is None:
             self.db = DB(**self.db_settings)
             self.db.connect()
+            for sql in self.init_sqls:
+                self.db.query(sql)
 
     def disconnect_db(self):
         """
