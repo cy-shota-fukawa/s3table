@@ -9,7 +9,7 @@ from s3_table import S3Table
 def main():
     # 引数取得
     options = tools.get_argv()
-    options.setting_files = eval(options.setting_files)
+    options.setting_files = options.setting_files.split(",")
 
     for setting_file in options.setting_files:
         settings = json.load(open(setting_file, "r"))
