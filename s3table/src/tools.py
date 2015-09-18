@@ -1,7 +1,5 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-import json
-from os import listdir
 from datetime import date
 from optparse import OptionParser
 

@@ -1,9 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 import os
-
-from s3table.src.db import DB
-
+from db import DB
 
 class S3Table:
     def __init__(self, table_name, columns, load_files, db_settings, separator, init_sqls):
