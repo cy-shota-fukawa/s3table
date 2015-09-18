@@ -8,6 +8,7 @@ def main():
     """
     メイン
     """
+
     # ログインテーブルの作成
     settings = json.load(open("settings/format_loginlog.json", "r"))
     fmt_login = S3Table(**settings)
