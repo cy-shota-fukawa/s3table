@@ -3,9 +3,8 @@
 import sys
 import json
 
-from s3table.src import tools
+import tools
 from s3_table import S3Table
-
 
 def main():
     # 引数取得

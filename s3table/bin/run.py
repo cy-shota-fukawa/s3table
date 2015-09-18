@@ -1,9 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 import sys
-
-from s3table.src import run
-
+from src import run
 
 def main():
     run.main()
