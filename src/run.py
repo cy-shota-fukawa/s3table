@@ -11,11 +11,11 @@ def main():
 
     if options.create_flg == True:
         # テーブル作成
-        create_tables()
+        create_tables.main()
 
     if options.drop_flg == True:
         # テーブル削除
-        drop_tables()
+        drop_tables.main()
 
     return 0
 
