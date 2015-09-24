@@ -5,10 +5,10 @@ import commands
 from db import DB
 
 class S3Table:
-    def __init__(self, table_name, columns, load_files, db_settings, separator, init_sqls):
+    def __init__(self, table_name, columns, load_paths, db_settings, separator, init_sqls):
         self.table_name = table_name
         self.columns = columns
-        self.load_files = load_files
+        self.load_paths = load_paths
         self.db_settings = db_settings
         self.separator = separator
         self.init_sqls = init_sqls
@@ -68,8 +68,8 @@ class S3Table:
         :return: ダウンロードしたファイルのリスト
         """
         cp_files = []
-        self.load_files = self.wild_process(self.load_files)
-        for path in self.load_files:
+        self.load_paths = self.wild_process(self.load_paths)
+        for path in self.load_paths:
             print "path : ", path
             # ファイルダウンロード
             os.system("aws s3 cp %s ./" % path)
@@ -79,29 +79,29 @@ class S3Table:
 
         return cp_files
 
-    def wild_process(self, load_files):
+    def wild_process(self, load_paths):
         """
         ワイルドカード用の処理
-        :param load_files:
+        :param load_paths:
         :return:
         """
         results = []
-        for load_file in load_files:
-            if load_file.endswith("/"):
+        for load_path in load_paths:
+            if load_path.endswith("/"):
                 # ワイルドカード対応
                 """
                 ファイルリストを出す必要がある
                 """
                 # ファイルリストを取得
-                cmd = "aws s3 ls %s" % load_file
+                cmd = "aws s3 ls %s" % load_path
                 res = commands.getoutput(cmd)
 
                 # 日付、容量、ファイル名の形になっているのでファイル名だけを取得
                 for row in res.split("\n"):
                     file_name = row.split(" ")[-1]
-                    results.append(file_name)
+                    results.append(load_path+file_name)
             else:
-                results.append(load_file)
+                results.append(load_path)
         return results
 
     def load_data(self, cp_files):
