@@ -84,7 +84,7 @@ class S3Table:
         :param load_files:
         :return:
         """
-        res = []
+        results = []
         for load_file in load_files:
             if load_file.endswith("/"):
                 # ワイルドカード対応
@@ -98,10 +98,10 @@ class S3Table:
                 # 日付、容量、ファイル名の形になっているのでファイル名だけを取得
                 for row in res.split("\n"):
                     file_name = row.split(" ")[-1]
-                    res.append(file_name)
+                    results.append(file_name)
             else:
-                res.append(load_file)
-        return res
+                results.append(load_file)
+        return results
 
     def load_data(self, cp_files):
         """
