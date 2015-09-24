@@ -70,7 +70,6 @@ class S3Table:
         cp_files = []
         self.load_paths = self.wild_process(self.load_paths)
         for path in self.load_paths:
-            print "path : ", path
             # ファイルダウンロード
             os.system("aws s3 cp %s ./" % path)
 
