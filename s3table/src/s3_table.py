@@ -1,6 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 import os
+import commands
 from db import DB
 
 class S3Table:
@@ -67,7 +68,7 @@ class S3Table:
         :return: ダウンロードしたファイルのリスト
         """
         cp_files = []
-        self.load_files = self.check(self.load_files)
+        self.load_files = self.wild_process(self.load_files)
         for path in self.load_files:
             # ファイルダウンロード
             os.system("aws s3 cp %s ./" % path)
@@ -77,11 +78,27 @@ class S3Table:
 
         return cp_files
 
-    def check(self, load_files):
+    def wild_process(self, load_files):
+        """
+        ワイルドカード用の処理
+        :param load_files:
+        :return:
+        """
         res = []
         for load_file in load_files:
-            if load_files.endswith("/*"):
-                res.append(load_file)
+            if load_file.endswith("/"):
+                # ワイルドカード対応
+                """
+                ファイルリストを出す必要がある
+                """
+                # ファイルリストを取得
+                cmd = "aws s3 ls %s" % load_file
+                res = commands.getoutput(cmd)
+
+                # 日付、容量、ファイル名の形になっているのでファイル名だけを取得
+                for row in res.split("\n"):
+                    file_name = row.split(" ")[-1]
+                    res.append(file_name)
             else:
                 res.append(load_file)
         return res
